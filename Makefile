@@ -4,7 +4,7 @@ CFLAGS := -Wall -Werror -Wextra
 HEADERS := so_long.h
 LIBFT := libft
 MLX := mlx
-INCLUDES := -I/usr/include -I$(mlx) -I$(LIBFT)/$(LIBFT)
+INCLUDES := -I/usr/include -I$(MLX) -I$(LIBFT)
 LIBS := -L$(MLX) -l$(MLX)_Linux -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz $(LIBFT)/$(LIBFT).a
 SOURCES := main.c
 OBJECTS := $(SOURCES:.c=.o)
@@ -16,7 +16,7 @@ $(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o $(NAME)
 
 %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
