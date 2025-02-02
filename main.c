@@ -20,6 +20,7 @@ int	main(void)
 {
 	t_mlx_data	*data;
 
+	data = NULL;
 	data->conn = mlx_init();
 	if (!data->conn)
 		return (MALLOC_ERROR);

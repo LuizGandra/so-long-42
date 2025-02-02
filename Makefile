@@ -2,10 +2,12 @@ NAME := so_long
 CC := clang
 CFLAGS := -Wall -Werror -Wextra
 HEADERS := so_long.h
-LIBFT := libft
+LIBS_DIR := libs
+LIBFT := $(LIBS_DIR)/libft
 MLX := mlx
-INCLUDES := -I/usr/include -I$(mlx) -I$(LIBFT)/$(LIBFT)
-LIBS := -L$(MLX) -l$(MLX)_Linux -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz $(LIBFT)/$(LIBFT).a
+INCLUDES := -I/usr/include -I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
+# TODO check if -I is necessary in LIBS for linker
+LIBS := -L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11 -lm -lz 
 SOURCES := main.c
 OBJECTS := $(SOURCES:.c=.o)
 
