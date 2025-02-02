@@ -18,18 +18,21 @@ int	on_destroy(int keysym, t_mlx_data *data)
 
 int	main(void)
 {
-	t_mlx_data	data;
+	t_mlx_data	*data;
 
-	data.conn = mlx_init();
-	if (!data.conn)
+	data->conn = mlx_init();
+	if (!data->conn)
 		return (MALLOC_ERROR);
-	printf("testeee");
-	data.window = mlx_new_window(data.conn, WIDTH, HEIGHT, "So Long");
-	if (!data.window)
-		return (free(data.conn), MALLOC_ERROR);
-	mlx_hook(data.window, KeyRelease, KeyReleaseMask, on_keypress, &data);
-	mlx_hook(data.window, DestroyNotify, StructureNotifyMask, on_destroy, &data);
-	mlx_loop(data.conn);
+	data->window = mlx_new_window(data->conn, WIDTH, HEIGHT, "So Long");
+	if (!data->window)
+		return (free(data->conn), MALLOC_ERROR);
+	// * defines a hook for the KeyRelease event
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, on_keypress, data);
+	// * defines a hook for the DestroyNotify event
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, on_destroy, data);
+
+	// * loops over the pointer, triggering each hook in order of registration
+	mlx_loop(data->conn);
 	
 	return (0);
 }

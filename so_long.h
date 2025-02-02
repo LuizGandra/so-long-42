@@ -17,6 +17,7 @@ typedef struct s_mlx_data
 {
 	void	*conn;
 	void	*window;
+	void	*images[5];
 }			t_mlx_data;
 
 #endif
