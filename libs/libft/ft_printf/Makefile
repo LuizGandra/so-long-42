@@ -1,4 +1,3 @@
-NAME := libftprintf.a
 CFLAGS := -Wall -Werror -Wextra
 ARFLAGS := -rcs
 RM := rm -rf
@@ -9,8 +8,6 @@ SOURCES := \
 OBJECTS := $(SOURCES:.c=.o)
 
 all: $(OBJECTS)
-
-$(NAME): $(OBJECTS)
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@

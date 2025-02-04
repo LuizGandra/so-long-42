@@ -14,28 +14,36 @@ ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 OBJECTS := $(SOURCES:.c=.o)
+PRINTF_DIR := ft_printf
+FT_PRINTF_OBJECTS := \
+	$(PRINTF_DIR)/ft_printf_bonus.o $(PRINTF_DIR)/utils_bonus.o \
+	$(PRINTF_DIR)/ft_putaddress_bonus.o $(PRINTF_DIR)/ft_puthex_bonus.o \
+	$(PRINTF_DIR)/ft_putchar_bonus.o $(PRINTF_DIR)/ft_putnbr_bonus.o \
+	$(PRINTF_DIR)/ft_putstr_bonus.o
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	@$(MAKE) -C ft_printf
-	@$(AR) $(ARFLAGS) $@ $^
+$(NAME): $(OBJECTS) $(FT_PRINTF_OBJECTS)
+	$(AR) $(ARFLAGS) $@ $^
 
 %.o: %.c $(HEADERS)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(FT_PRINTF_OBJECTS):
+	$(MAKE) -C ft_printf
 
 clean:
-	@$(MAKE) -C ft_printf clean
-	@$(RM) $(OBJECTS)
+	$(MAKE) -C ft_printf clean
+	$(RM) $(OBJECTS)
 
 fclean: clean
-	@$(MAKE) -C ft_printf fclean
-	@$(RM) $(NAME)
+	$(MAKE) -C ft_printf fclean
+	$(RM) $(NAME)
 
 re: fclean all
 	$(MAKE) -C ft_printf re
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader
+	norminette -R CheckForbiddenSourceHeader
 
-.PHONY: all clean fclean re norm
+.PHONY: all ft_printf clean fclean re norm

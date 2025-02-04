@@ -16,5 +16,5 @@ int	ft_putstr(char *s)
 {
 	if (!s)
 		return (ft_putstr("(null)"));
-	return (write(STDOUT, s, ft_strlen(s)));
+	return (write(STDOUT, s, ft_stringlen(s)));
 }

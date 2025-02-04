@@ -26,7 +26,7 @@ int	ft_putnbr(int n, const char flag)
 	}
 	else if (flag == '+' || flag == ' ')
 		bytes += ft_putchar(flag);
-	write_number(long_n, &bytes);
+	write_nbr(long_n, &bytes);
 	return (bytes);
 }
 
@@ -37,6 +37,6 @@ int	ft_putnbr_unsigned(unsigned int n, const char flag)
 	bytes = 0;
 	if (flag == '+' || flag == ' ')
 		bytes += ft_putchar(flag);
-	write_number(n, &bytes);
+	write_nbr(n, &bytes);
 	return (bytes);
 }

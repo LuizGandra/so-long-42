@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:53:35 by lcosta-g          #+#    #+#             */
-/*   Updated: 2024/11/27 19:09:19 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:49:46 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	write_hex(unsigned long long n, int *bytes, char *hex_values)
 	*bytes += ft_putchar(hex_values[n % 16]);
 }
 
-void	write_number(long long n, int *bytes)
+void	write_nbr(long long n, int *bytes)
 {
 	char	c;
 
 	if (n > 9)
-		write_number(n / 10, bytes);
+		write_nbr(n / 10, bytes);
 	c = (n % 10) + '0';
 	*bytes += ft_putchar(c);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_stringlen(const char *s)
 {
 	size_t	len;
 

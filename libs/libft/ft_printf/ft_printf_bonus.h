@@ -28,7 +28,7 @@ int		ft_putnbr_unsigned(unsigned int n, const char flag);
 int		ft_puthex(unsigned int n, const char type, const char flag);
 
 void	write_hex(unsigned long long n, int *bytes, char *hex_values);
-void	write_number(long long n, int *bytes);
-size_t	ft_strlen(const char *s);
+void	write_nbr(long long n, int *bytes);
+size_t	ft_stringlen(const char *s);
 
 #endif
