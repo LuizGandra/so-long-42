@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/02/05 19:45:33 by lcosta-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -19,11 +31,11 @@
 # define IMG_HEIGHT 64
 
 // * ASSETS PATHS
-# define BACKGROUND_IMG "../assets/background.xpm"
-# define WALL_IMG "../assets/wall.xpm"
-# define COLLECTIBLE_IMG "../assets/collectible.xpm"
-# define EXIT_IMG "../assets/exit.xpm"
-# define PLAYER_IMG "../assets/player.xpm"
+# define BACKGROUND_IMG "./assets/background.xpm"
+# define WALL_IMG "./assets/wall.xpm"
+# define COLLECTIBLE_IMG "./assets/collectible.xpm"
+# define EXIT_IMG "./assets/exit.xpm"
+# define PLAYER_IMG "./assets/player.xpm"
 
 // * ASSETS INDEX
 # define BACKGROUND_INDEX 0
@@ -32,18 +44,15 @@
 # define EXIT_INDEX 3
 # define PLAYER_INDEX 4
 
-// * MAPS PATHS
-# define MAP "maps/default_map.ber"
-
 // * STRUCTS
 typedef struct s_map
 {
-	int	width;
-	int	height;
-	int collectible_count;
-	int exit_count;
-	int player_count;
-	int	is_valid;
+	int		width;
+	int		height;
+	int 	collectible_count;
+	int 	exit_count;
+	int 	player_count;
+	char	**grid;
 }			t_map;
 
 typedef struct s_mlx_data
@@ -53,6 +62,14 @@ typedef struct s_mlx_data
 	void	*images[5];
 	t_map	map;
 }			t_mlx_data;
+
+// * UTILS
+void	throw_error(char *msg);
+
+// * MAP
+void	validate_map(t_map *map);
+void	read_map(t_mlx_data *data, char *map_path);
+
 
 // * HOOKS
 int	on_keypress(int keysym, t_mlx_data *data);

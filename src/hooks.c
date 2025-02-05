@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/02/05 15:35:09 by lcosta-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	on_keypress(int keysym, t_mlx_data *data)
 {
-	(void)data;
+	printf("Data: %p\n", data);
 	if (keysym == XK_Up)
 	{
 		// TODO
@@ -23,15 +35,23 @@ int	on_keypress(int keysym, t_mlx_data *data)
 		// TODO
 		ft_printf("Keysym: %i\n", keysym);
 	}
+	else if (keysym == XK_Escape)
+	{
+		ft_printf("Keysym: %i\n", keysym);
+		on_destroy(keysym, data);
+	}
 	return (EXIT_SUCCESS);
 }
 
 int	on_destroy(int keysym, t_mlx_data *data)
 {
 	ft_printf("Keysym: %i\n", keysym);
+	mlx_destroy_image(data->conn, data->images[BACKGROUND_INDEX]);
+	ft_printf("\ndepois do destroy image\n");
 	mlx_destroy_window(data->conn, data->window);
+	ft_printf("\ndepois do destroy window\n");
 	mlx_destroy_display(data->conn);
+	ft_printf("\ndepois do destroy display\n");
 	free(data->conn);
 	exit(EXIT_SUCCESS);
-	return(EXIT_SUCCESS);
 }
