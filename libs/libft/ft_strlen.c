@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:44 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/05 18:24:10 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/06 08:29:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlen(const char *s)
 	int	len;
 
 	len = 0;
+	if (!s)
+		return (len);
 	while (s[len])
 		len++;
 	return (len);

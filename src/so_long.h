@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/05 19:45:33 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:30:48 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@
 // * STRUCTS
 typedef struct s_map
 {
+	char	**grid;
 	int		width;
 	int		height;
 	int 	collectible_count;
 	int 	exit_count;
 	int 	player_count;
-	char	**grid;
+	int		player_x;
+	int		player_y;
 }			t_map;
 
 typedef struct s_mlx_data
@@ -61,18 +63,21 @@ typedef struct s_mlx_data
 	void	*window;
 	void	*images[5];
 	t_map	map;
+	t_map validation_map;
 }			t_mlx_data;
-
-// * UTILS
-void	throw_error(char *msg);
-
-// * MAP
-void	validate_map(t_map *map);
-void	read_map(t_mlx_data *data, char *map_path);
-
 
 // * HOOKS
 int	on_keypress(int keysym, t_mlx_data *data);
 int	on_destroy(int keysym, t_mlx_data *data);
+
+// * MAP
+void	validate_map(t_map *map, t_map *validation_map);
+void	read_map(t_mlx_data *data, char *map_path);
+
+// * RENDER
+void	render_map(t_mlx_data *data);
+
+// * UTILS
+void	throw_error(char *msg);
 
 #endif
