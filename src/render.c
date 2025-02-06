@@ -1,23 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/02/06 18:55:06 by lcosta-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static void	load_XPM_images(t_mlx_data *data);
-void				render_image(t_mlx_data *data, char cell, int x, int y);
+static void	load_xpm_images(t_mlx_data *data);
+void		render_image(t_mlx_data *data, char cell, int x, int y);
 
 void	render_map(t_mlx_data *data)
 {
 	char	**grid;
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
-	// * load images
-	load_XPM_images(data);
-	// * render background
-	mlx_put_image_to_window(data->conn, data->window, data->images[BACKGROUND_INDEX], 0, 0);
+	load_xpm_images(data);
 	grid = data->map.grid;
-	x = 0;
 	y = 0;
 	while (grid[y])
 	{
+		x = 0;
 		while (grid[y][x])
 		{
 			render_image(data, grid[y][x], x, y);
@@ -27,37 +36,43 @@ void	render_map(t_mlx_data *data)
 	}
 }
 
-static void	load_XPM_images(t_mlx_data *data)
+static void	load_xpm_images(t_mlx_data *data)
 {
-	int	WIDTH = IMG_WIDTH;
-	int	HEIGHT = IMG_HEIGHT;
+	int	width;
+	int	height;
 
-	data->images[BACKGROUND_INDEX] = mlx_xpm_file_to_image(data->conn, BACKGROUND_IMG, &WIDTH, &HEIGHT);
-	data->images[WALL_INDEX] = mlx_xpm_file_to_image(data->conn, WALL_IMG, &WIDTH, &HEIGHT);
-	data->images[COLLECTIBLE_INDEX] = mlx_xpm_file_to_image(data->conn, COLLECTIBLE_IMG, &WIDTH, &HEIGHT);
-	data->images[EXIT_INDEX] = mlx_xpm_file_to_image(data->conn, EXIT_IMG, &WIDTH, &HEIGHT);
-	data->images[PLAYER_INDEX] = mlx_xpm_file_to_image(data->conn, PLAYER_IMG, &WIDTH, &HEIGHT);
+	width = IMG_WIDTH;
+	height = IMG_HEIGHT;
+	data->images[BACKGROUND_INDEX] = mlx_xpm_file_to_image(data->conn,
+			BACKGROUND_IMG, &width, &height);
+	data->images[WALL_INDEX] = mlx_xpm_file_to_image(data->conn, WALL_IMG,
+			&width, &height);
+	data->images[COLLECTIBLE_INDEX] = mlx_xpm_file_to_image(data->conn,
+			COLLECTIBLE_IMG, &width, &height);
+	data->images[EXIT_INDEX] = mlx_xpm_file_to_image(data->conn, EXIT_IMG,
+			&width, &height);
+	data->images[PLAYER_INDEX] = mlx_xpm_file_to_image(data->conn, PLAYER_IMG,
+			&width, &height);
 }
 
 void	render_image(t_mlx_data *data, char cell, int x, int y)
 {
+	int		is_player_on_exit;
 	void	*image;
 
-	if (cell == '1')
+	is_player_on_exit = check_player_on_exit(data, x, y);
+	if (cell == '0')
+		image = data->images[BACKGROUND_INDEX];
+	else if (cell == '1')
 		image = data->images[WALL_INDEX];
 	else if (cell == 'C')
 		image = data->images[COLLECTIBLE_INDEX];
-	else if (cell == 'E')
+	else if (cell == 'E' && !is_player_on_exit)
 		image = data->images[EXIT_INDEX];
-	else if (cell == 'P')
+	else if (cell == 'P' || is_player_on_exit)
 		image = data->images[PLAYER_INDEX];
 	else
 		return ;
-	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y * IMG_HEIGHT);
-}
-
-void	render_player_position(t_mlx_data *data, int x, int y)
-{
-	mlx_destroy_image(data->conn, data->images[PLAYER_INDEX]);
-	render_image(data, 'P', x, y);
+	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y
+		* IMG_HEIGHT);
 }

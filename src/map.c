@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 09:08:43 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:34:11 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	read_map(t_mlx_data *data, char *map_path)
 	{
 		line = get_next_line(map_fd);
 		if (!line)
-			break;
+			break ;
 		data->map.height++;
 		temp = ft_strjoin(temp, line);
 		free(line);
@@ -52,6 +52,8 @@ void	validate_map(t_map *map, t_map *validation_map)
 
 	i = 0;
 	grid = map->grid;
+	if (map->width * IMG_WIDTH > 1920 || map->height * IMG_HEIGHT > 1080)
+		throw_error("Map size must be less than or equal to 30x17.\n");
 	if (!is_a_wall(grid[i]) || !is_a_wall(grid[map->height - 1]))
 		throw_error("Map must be closed by walls.\n");
 	while (i < map->height)
@@ -66,8 +68,8 @@ void	validate_map(t_map *map, t_map *validation_map)
 	if (!map->collectible_count)
 		throw_error("Map must contain at least one collectible.\n");
 	has_valid_path(validation_map, map->player_x, map->player_y);
-	if (validation_map->exit_count != 1 ||
-			validation_map->collectible_count != map->collectible_count)
+	if (validation_map->exit_count != 1
+		|| validation_map->collectible_count != map->collectible_count)
 		throw_error("The map must contain a valid path.\n");
 }
 
@@ -100,7 +102,7 @@ static void	validate_line(t_map *map, char *line, int height)
 	}
 }
 
-static int is_a_wall(char *line)
+static int	is_a_wall(char *line)
 {
 	while (*line)
 	{
@@ -114,7 +116,7 @@ static int is_a_wall(char *line)
 static void	has_valid_path(t_map *map, int x, int y)
 {
 	if (map->grid[y][x] == '1' || map->grid[y][x] == 'X')
-		return;
+		return ;
 	if (map->grid[y][x] == 'C')
 		map->collectible_count++;
 	else if (map->grid[y][x] == 'E')

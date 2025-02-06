@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 10:00:12 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:27:07 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,9 @@
 # include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <fcntl.h>
-
-// * WINDOW SIZE
-# define WINDOW_WIDTH 640
-# define WINDOW_HEIGHT 288
 
 // * IMAGES SIZE
 # define IMG_WIDTH 64
@@ -50,9 +46,9 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
-	int 	collectible_count;
-	int 	exit_count;
-	int 	player_count;
+	int		collectible_count;
+	int		exit_count;
+	int		player_count;
 	int		player_x;
 	int		player_y;
 }			t_map;
@@ -63,12 +59,12 @@ typedef struct s_mlx_data
 	void	*window;
 	void	*images[5];
 	t_map	map;
-	t_map validation_map;
+	t_map	validation_map;
 }			t_mlx_data;
 
 // * HOOKS
-int	on_keypress(int keysym, t_mlx_data *data);
-int	on_destroy(int keysym, t_mlx_data *data);
+int		on_keypress(int keysym, t_mlx_data *data);
+int		on_destroy(int keysym, t_mlx_data *data);
 
 // * MAP
 void	validate_map(t_map *map, t_map *validation_map);
@@ -79,8 +75,11 @@ void	render_map(t_mlx_data *data);
 void	render_image(t_mlx_data *data, char cell, int x, int y);
 void	render_player_position(t_mlx_data *data, int x, int y);
 
+// * PLAYER ACTIONS
+void	handle_movement(t_mlx_data *data, int x, int y);
+
 // * UTILS
 void	throw_error(char *msg);
-int	is_movement_valid(t_map *map, int x, int y);
+int		check_player_on_exit(t_mlx_data *data, int x, int y);
 
 #endif

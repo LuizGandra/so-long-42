@@ -10,7 +10,8 @@ INCLUDES := -I/usr/include -I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
 LIBS := -L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11 -lm -lz
 SOURCES := \
 	$(SOURCES_DIR)/main.c $(SOURCES_DIR)/hooks.c $(SOURCES_DIR)/map.c \
-	$(SOURCES_DIR)/render.c $(SOURCES_DIR)/utils.c
+	$(SOURCES_DIR)/render.c $(SOURCES_DIR)/player_actions.c \
+	$(SOURCES_DIR)/utils.c
 OBJECTS := $(SOURCES:.c=.o)
 
 all: $(NAME)
