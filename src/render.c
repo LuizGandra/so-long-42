@@ -1,7 +1,7 @@
 #include "so_long.h"
 
 static void	load_XPM_images(t_mlx_data *data);
-static void	render_image(t_mlx_data *data, char cell, int x, int y);
+void				render_image(t_mlx_data *data, char cell, int x, int y);
 
 void	render_map(t_mlx_data *data)
 {
@@ -39,7 +39,7 @@ static void	load_XPM_images(t_mlx_data *data)
 	data->images[PLAYER_INDEX] = mlx_xpm_file_to_image(data->conn, PLAYER_IMG, &WIDTH, &HEIGHT);
 }
 
-static void render_image(t_mlx_data *data, char cell, int x, int y)
+void	render_image(t_mlx_data *data, char cell, int x, int y)
 {
 	void	*image;
 
@@ -54,4 +54,10 @@ static void render_image(t_mlx_data *data, char cell, int x, int y)
 	else
 		return ;
 	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y * IMG_HEIGHT);
+}
+
+void	render_player_position(t_mlx_data *data, int x, int y)
+{
+	mlx_destroy_image(data->conn, data->images[PLAYER_INDEX]);
+	render_image(data, 'P', x, y);
 }

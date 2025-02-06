@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 09:30:48 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:00:12 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ void	read_map(t_mlx_data *data, char *map_path);
 
 // * RENDER
 void	render_map(t_mlx_data *data);
+void	render_image(t_mlx_data *data, char cell, int x, int y);
+void	render_player_position(t_mlx_data *data, int x, int y);
 
 // * UTILS
 void	throw_error(char *msg);
+int	is_movement_valid(t_map *map, int x, int y);
 
 #endif
