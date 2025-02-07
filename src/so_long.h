@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 18:27:07 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:19:43 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define EXIT_INDEX 3
 # define PLAYER_INDEX 4
 
+// * VALID CELLS
+# define VALID_CELLS "01CEP"
+
+// * MOVEMENT LOG MESSAGE
+# define MOVEMENT_LOG_MSG "Movement count: %i\n"
+
 // * STRUCTS
 typedef struct s_map
 {
@@ -58,28 +64,37 @@ typedef struct s_mlx_data
 	void	*conn;
 	void	*window;
 	void	*images[5];
+	int		player_movement_count;
 	t_map	map;
 	t_map	validation_map;
 }			t_mlx_data;
 
 // * HOOKS
-int		on_keypress(int keysym, t_mlx_data *data);
-int		on_destroy(int keysym, t_mlx_data *data);
+int			on_keypress(int keysym, t_mlx_data *data);
+int			on_destroy(int keysym, t_mlx_data *data);
 
 // * MAP
-void	validate_map(t_map *map, t_map *validation_map);
-void	read_map(t_mlx_data *data, char *map_path);
+void		validate_map(t_mlx_data *data, t_map *map, t_map *validation_map);
+void		read_map(t_mlx_data *data, char *map_path);
 
 // * RENDER
-void	render_map(t_mlx_data *data);
-void	render_image(t_mlx_data *data, char cell, int x, int y);
-void	render_player_position(t_mlx_data *data, int x, int y);
+void		render_map(t_mlx_data *data);
+void		render_image(t_mlx_data *data, char cell, int x, int y);
+void		render_player_position(t_mlx_data *data, int x, int y);
 
 // * PLAYER ACTIONS
-void	handle_movement(t_mlx_data *data, int x, int y);
+void		handle_movement(t_mlx_data *data, int x, int y);
 
 // * UTILS
-void	throw_error(char *msg);
-int		check_player_on_exit(t_mlx_data *data, int x, int y);
+int			check_player_on_exit(t_mlx_data *data, int x, int y);
+int			is_a_wall(char *line);
+int			is_cell_valid(char cell);
+void		check_exit(t_mlx_data *data);
+void		clean_grid(char **mem);
+
+// * ERRORS
+void		throw_error(char *msg);
+void		clean_exit(t_mlx_data *data, char *msg);
+void		clean_exit_fd(int fd, char *msg);
 
 #endif
