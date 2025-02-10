@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:09:17 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:09:19 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:55:45 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_a_wall(char *line)
 {
 	while (*line)
 	{
-		if (*line++ != '1')
+		if (*line++ != WALL_CELL)
 			return (0);
 	}
 	return (1);

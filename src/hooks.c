@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:09:58 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	on_destroy(int keysym, t_mlx_data *data)
 	data = get_data();
 	(void)keysym;
 	clean_grid(data->map.grid);
-	clean_grid(data->validation_map.grid);
+	clean_grid(data->flooded_map.grid);
 	mlx_destroy_image(data->conn, data->images[BACKGROUND_INDEX]);
 	mlx_destroy_image(data->conn, data->images[WALL_INDEX]);
 	mlx_destroy_image(data->conn, data->images[COLLECTIBLE_INDEX]);

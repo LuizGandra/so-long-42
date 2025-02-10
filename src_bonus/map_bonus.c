@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:20:20 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	read_map(t_mlx_data *data, char *map_path)
 		line = get_next_line(map_fd);
 	}
 	data->map.grid = ft_split(temp, '\n');
-	data->validation_map.grid = ft_split(temp, '\n');
+	data->flooded_map.grid = ft_split(temp, '\n');
 	data->map.width = ft_strlen(data->map.grid[0]);
 	free(temp);
 	close(map_fd);
 }
 
-void	validate_map(t_mlx_data *data, t_map *map, t_map *validation_map)
+void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 {
 	int		i;
 	char	**grid;
@@ -64,9 +64,9 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *validation_map)
 		clean_exit(data, "The map must contain one start position.\n");
 	if (!map->collectible_count)
 		clean_exit(data, "The map must contain at least one collectible.\n");
-	has_valid_path(validation_map, map->player_x, map->player_y);
-	if (validation_map->exit_count != 1
-		|| validation_map->collectible_count != map->collectible_count)
+	has_valid_path(flooded_map, map->player_x, map->player_y);
+	if (flooded_map->exit_count != 1
+		|| flooded_map->collectible_count != map->collectible_count)
 		clean_exit(data, "The map must contain a valid path.\n");
 }
 
@@ -77,18 +77,19 @@ static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height)
 	i = 0;
 	if (map->width != ft_strlen(line))
 		clean_exit(data, "The map must be rectangular.\n");
-	if (line[i] != '1' || line[map->width - 1] != '1')
+	if (line[i] != WALL_CELL || line[map->width - 1] != WALL_CELL)
 		clean_exit(data, "The map must be closed by walls.\n");
 	while (i < map->width)
 	{
 		if (!is_cell_valid(line[i]))
-			clean_exit(data, "The map can only contain the characters "
+			clean_exit(data,
+				"The map can only contain the characters "
 				"0, 1, C, E and P.\n");
-		if (line[i] == 'C')
+		if (line[i] == COLLECTIBLE_CELL)
 			map->collectible_count++;
-		else if (line[i] == 'E')
+		else if (line[i] == EXIT_CELL)
 			map->exit_count++;
-		else if (line[i] == 'P')
+		else if (line[i] == PLAYER_CELL)
 		{
 			map->player_count++;
 			map->player_x = i;
@@ -101,13 +102,14 @@ static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height)
 // * Flood Fill Algorithm
 static void	has_valid_path(t_map *map, int x, int y)
 {
-	if (map->grid[y][x] == '1' || map->grid[y][x] == 'X')
+	if (map->grid[y][x] == WALL_CELL || map->grid[y][x] == ENEMY_CELL
+		|| map->grid[y][x] == WALKED_CELL)
 		return ;
-	if (map->grid[y][x] == 'C')
+	if (map->grid[y][x] == COLLECTIBLE_CELL)
 		map->collectible_count++;
-	else if (map->grid[y][x] == 'E')
+	else if (map->grid[y][x] == EXIT_CELL)
 		map->exit_count++;
-	map->grid[y][x] = 'X';
+	map->grid[y][x] = WALKED_CELL;
 	has_valid_path(map, x + 1, y);
 	has_valid_path(map, x - 1, y);
 	has_valid_path(map, x, y + 1);

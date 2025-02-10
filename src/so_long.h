@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:09:14 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@
 # define EXIT_INDEX 3
 # define PLAYER_INDEX 4
 
-// * VALID CELLS
-# define VALID_CELLS "01CEP"
+// * CELLS
+# define EMPTY_CELL '0'
+# define WALL_CELL '1'
+# define COLLECTIBLE_CELL 'C'
+# define EXIT_CELL 'E'
+# define PLAYER_CELL 'P'
+# define WALKED_CELL '-'
 
-// * MOVEMENT LOG MESSAGE
-# define MOVEMENT_LOG_MSG "Movement count: %i\n"
+// * OTHERS
+# define VALID_CELLS "01CEP"
+# define MOVEMENT_LOG "Movement count: %i\n"
 
 // * STRUCTS
 typedef struct s_map
@@ -66,9 +72,10 @@ typedef struct s_mlx_data
 	void	*images[5];
 	int		player_movement_count;
 	t_map	map;
-	t_map	validation_map;
+	t_map	flooded_map;
 }			t_mlx_data;
 
+// * STATICS
 t_mlx_data	*get_data(void);
 
 // * HOOKS
@@ -76,7 +83,7 @@ int			on_keypress(int keysym, t_mlx_data *data);
 int			on_destroy(int keysym, t_mlx_data *data);
 
 // * MAP
-void		validate_map(t_mlx_data *data, t_map *map, t_map *validation_map);
+void		validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map);
 void		read_map(t_mlx_data *data, char *map_path);
 
 // * RENDER

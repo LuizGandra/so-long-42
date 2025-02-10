@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:02:46 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/08 17:24:28 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clean_exit(t_mlx_data *data, char *msg)
 	ft_printf("Error\n");
 	ft_printf(msg);
 	clean_grid(data->map.grid);
-	clean_grid(data->validation_map.grid);
+	clean_grid(data->flooded_map.grid);
 	if (data->window)
 		mlx_destroy_window(data->conn, data->window);
 	if (data->conn)

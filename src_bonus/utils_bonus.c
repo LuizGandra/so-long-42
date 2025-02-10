@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:09:17 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:20:35 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:19:29 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_a_wall(char *line)
 {
 	while (*line)
 	{
-		if (*line++ != '1')
+		if (*line++ != WALL_CELL)
 			return (0);
 	}
 	return (1);
@@ -36,13 +36,25 @@ int	is_cell_valid(char cell)
 	return (1);
 }
 
-void	check_exit(t_mlx_data *data)
+void	print_movement_count(t_mlx_data *data)
 {
-	if (!data->map.collectible_count)
+	char	*str;
+	char	*count_str;
+
+	count_str = ft_itoa(data->player_movement_count);
+	if (!count_str)
 	{
-		ft_printf("\n========== Congratulations! ==========\n");
-		ft_printf("You win with %i movements.", data->player_movement_count);
-		ft_printf("\n======================================\n\n");
+		free(count_str);
 		on_destroy(0, data);
 	}
+	str = ft_strjoin(MOVEMENT_LOG_STR, count_str);
+	if (!str)
+	{
+		free(str);
+		free(count_str);
+		on_destroy(0, data);
+	}
+	render_movement_counter(data, str);
+	free(count_str);
+	free(str);
 }

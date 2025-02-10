@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 18:55:06 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:55:02 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 	void	*image;
 
 	is_player_on_exit = check_player_on_exit(data, x, y);
-	if (cell == '0')
+	if (cell == EMPTY_CELL)
 		image = data->images[BACKGROUND_INDEX];
-	else if (cell == '1')
+	else if (cell == WALL_CELL)
 		image = data->images[WALL_INDEX];
-	else if (cell == 'C')
+	else if (cell == COLLECTIBLE_CELL)
 		image = data->images[COLLECTIBLE_INDEX];
-	else if (cell == 'E' && !is_player_on_exit)
+	else if (cell == EXIT_CELL && !is_player_on_exit)
 		image = data->images[EXIT_INDEX];
-	else if (cell == 'P' || is_player_on_exit)
+	else if (cell == PLAYER_CELL || is_player_on_exit)
 		image = data->images[PLAYER_INDEX];
 	else
 		return ;

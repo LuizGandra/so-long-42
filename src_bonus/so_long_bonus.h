@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 14:20:42 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:44:06 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define COLLECTIBLE_IMG "./assets/collectible.xpm"
 # define EXIT_IMG "./assets/exit.xpm"
 # define PLAYER_IMG "./assets/player.xpm"
+# define ENEMY_IMG "./assets/enemy.xpm"
+# define MOVEMENT_LOG_BG_IMG "./assets/movement_log_bg.xpm"
 
 // * ASSETS INDEX
 # define BACKGROUND_INDEX 0
@@ -39,12 +41,25 @@
 # define COLLECTIBLE_INDEX 2
 # define EXIT_INDEX 3
 # define PLAYER_INDEX 4
+# define ENEMY_INDEX 5
+# define MOVEMENT_LOG_BG_INDEX 6
 
-// * VALID CELLS
-# define VALID_CELLS "01CEP"
+// * CELLS
+# define EMPTY_CELL '0'
+# define WALL_CELL '1'
+# define COLLECTIBLE_CELL 'C'
+# define EXIT_CELL 'E'
+# define PLAYER_CELL 'P'
+# define ENEMY_CELL 'X'
+# define WALKED_CELL '-'
 
-// * MOVEMENT LOG MESSAGE
-# define MOVEMENT_LOG_MSG "Movement count: %i\n"
+// * OTHERS
+# define VALID_CELLS "01CEPX"
+# define MOVEMENT_LOG_STR "Movement count: "
+# define MOVEMENT_LOG_COLOR 0xFFFFFF
+# define MOVEMENT_LOG_X 32
+# define MOVEMENT_LOG_Y 32
+# define MOVEMENT_LOG_BG_LENGTH 6
 
 // * STRUCTS
 typedef struct s_map
@@ -63,35 +78,46 @@ typedef struct s_mlx_data
 {
 	void	*conn;
 	void	*window;
-	void	*images[5];
+	void	*images[7];
 	int		player_movement_count;
 	t_map	map;
-	t_map	validation_map;
+	t_map	flooded_map;
 }			t_mlx_data;
 
+// * STATICS
 t_mlx_data	*get_data(void);
 
 // * HOOKS
 int			on_keypress(int keysym, t_mlx_data *data);
 int			on_destroy(int keysym, t_mlx_data *data);
+int			on_loop(t_mlx_data *data);
 
 // * MAP
-void		validate_map(t_mlx_data *data, t_map *map, t_map *validation_map);
+void		validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map);
 void		read_map(t_mlx_data *data, char *map_path);
 
 // * RENDER
 void		render_map(t_mlx_data *data);
 void		render_image(t_mlx_data *data, char cell, int x, int y);
 void		render_player_position(t_mlx_data *data, int x, int y);
+void		render_movement_counter(t_mlx_data *data, char *str);
+void		render_last_player_position(t_mlx_data *data);
 
 // * PLAYER ACTIONS
 void		handle_movement(t_mlx_data *data, int x, int y);
+
+// * ANIMATIONS
+void		run_player_animation(t_mlx_data *data);
+
+// * GAME OVER
+void		check_exit(t_mlx_data *data);
+void		kill_player(t_mlx_data *data);
 
 // * UTILS
 int			check_player_on_exit(t_mlx_data *data, int x, int y);
 int			is_a_wall(char *line);
 int			is_cell_valid(char cell);
-void		check_exit(t_mlx_data *data);
+void		print_movement_count(t_mlx_data *data);
 
 // * ERRORS
 void		throw_error(char *msg);
