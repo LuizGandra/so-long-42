@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 13:57:35 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:20:20 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height);
 static void	has_valid_path(t_map *map, int x, int y);

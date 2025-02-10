@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   statics.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 13:15:22 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/08 16:53:58 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/02/10 14:13:48 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/02/10 14:17:45 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	ft_bzero(void *s, size_t n)
+t_mlx_data	*get_data(void)
 {
-	ft_memset(s, 0, n);
-}
+	static t_mlx_data	data;
 
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int	mem[12];
-	int	i;
-
-	ft_bzero(mem, 3 * sizeof(int));
-	i = 0;
-	while (i < 3)
-		printf("%i\n", mem[i++]);
-	return (0);
+	return (&data);
 }
-*/
