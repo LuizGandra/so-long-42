@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 18:44:21 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:28:47 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	on_keypress(int keysym, t_mlx_data *data)
 {
-	// TODO change sprite direction
 	if (keysym == XK_Up || keysym == XK_w)
 		handle_movement(data, data->map.player_x, data->map.player_y - 1);
 	else if (keysym == XK_Left || keysym == XK_a)
@@ -30,23 +29,24 @@ int	on_keypress(int keysym, t_mlx_data *data)
 
 int	on_loop(t_mlx_data *data)
 {
-	run_player_animation(data);
+	// run_player_animation(data);
 	return (EXIT_SUCCESS);
 }
 
+// TODO create a more generic function to clear all the sprites
 int	on_destroy(int keysym, t_mlx_data *data)
 {
 	data = get_data();
 	(void)keysym;
 	clean_grid(data->map.grid);
 	clean_grid(data->flooded_map.grid);
-	mlx_destroy_image(data->conn, data->images[BACKGROUND_INDEX]);
-	mlx_destroy_image(data->conn, data->images[WALL_INDEX]);
-	mlx_destroy_image(data->conn, data->images[COLLECTIBLE_INDEX]);
-	mlx_destroy_image(data->conn, data->images[EXIT_INDEX]);
-	mlx_destroy_image(data->conn, data->images[PLAYER_INDEX]);
-	mlx_destroy_image(data->conn, data->images[ENEMY_INDEX]);
-	mlx_destroy_image(data->conn, data->images[MOVEMENT_LOG_BG_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[BACKGROUND_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[WALL_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[COLLECTIBLE_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[EXIT_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[PLAYER_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[ENEMY_INDEX]);
+	mlx_destroy_image(data->conn, data->sprites[MOVEMENT_LOG_BG_INDEX]);
 	mlx_destroy_window(data->conn, data->window);
 	mlx_destroy_display(data->conn);
 	free(data->conn);

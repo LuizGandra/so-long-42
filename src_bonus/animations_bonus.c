@@ -6,36 +6,39 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:37:53 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 18:51:01 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:25:30 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-// TODO reduce the animation fps (this is possible?)
-// ? if I cant reduce the animation fps, I can animate just the death / walk
-// TODO add sprites for the animation and for each direction
 void	run_player_animation(t_mlx_data *data)
 {
-	static int frame = 0;
+	static t_animation player_animation;
 
-	if (frame == 0)
-		mlx_put_image_to_window(data->conn, data->window,
-			data->images[PLAYER_INDEX], data->map.player_x * IMG_WIDTH,
-			data->map.player_y * IMG_HEIGHT);
-	else if (frame == 1)
-		mlx_put_image_to_window(data->conn, data->window,
-			data->images[ENEMY_INDEX], data->map.player_x * IMG_WIDTH,
-			data->map.player_y * IMG_HEIGHT);
-	else if (frame == 2)
-		mlx_put_image_to_window(data->conn, data->window,
-			data->images[WALL_INDEX], data->map.player_x * IMG_WIDTH,
-			data->map.player_y * IMG_HEIGHT);
-	else if (frame == 3)
-		mlx_put_image_to_window(data->conn, data->window,
-			data->images[EXIT_INDEX], data->map.player_x * IMG_WIDTH,
-			data->map.player_y * IMG_HEIGHT);
-	frame++;
-	if (frame == 4)
-		frame = 0;
+	if (player_animation.delay == PLAYER_DELAY)
+	{
+		player_animation.delay = 0;
+		if (player_animation.current_frame == 0)
+			mlx_put_image_to_window(data->conn, data->window,
+				data->sprites[PLAYER_INDEX], data->map.player_x * IMG_WIDTH,
+				data->map.player_y * IMG_HEIGHT);
+		else if (player_animation.current_frame == 1)
+			mlx_put_image_to_window(data->conn, data->window,
+				data->sprites[ENEMY_INDEX], data->map.player_x * IMG_WIDTH,
+				data->map.player_y * IMG_HEIGHT);
+		else if (player_animation.current_frame == 2)
+			mlx_put_image_to_window(data->conn, data->window,
+				data->sprites[WALL_INDEX], data->map.player_x * IMG_WIDTH,
+				data->map.player_y * IMG_HEIGHT);
+		else if (player_animation.current_frame == 3)
+			mlx_put_image_to_window(data->conn, data->window,
+				data->sprites[EXIT_INDEX], data->map.player_x * IMG_WIDTH,
+				data->map.player_y * IMG_HEIGHT);
+		player_animation.current_frame++;
+		if (player_animation.current_frame == 4)
+			player_animation.current_frame = 0;
+	}
+	else
+		player_animation.delay++;
 }

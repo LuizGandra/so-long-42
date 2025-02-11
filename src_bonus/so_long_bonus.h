@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 18:44:06 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:21:40 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,12 @@
 // * LIBS
 # include "libft.h"
 # include "mlx.h"
+# include "so_long_sprites_bonus.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-// * IMAGES SIZE
-# define IMG_WIDTH 64
-# define IMG_HEIGHT 64
-
-// * ASSETS PATHS
-# define BACKGROUND_IMG "./assets/background.xpm"
-# define WALL_IMG "./assets/wall.xpm"
-# define COLLECTIBLE_IMG "./assets/collectible.xpm"
-# define EXIT_IMG "./assets/exit.xpm"
-# define PLAYER_IMG "./assets/player.xpm"
-# define ENEMY_IMG "./assets/enemy.xpm"
-# define MOVEMENT_LOG_BG_IMG "./assets/movement_log_bg.xpm"
-
-// * ASSETS INDEX
-# define BACKGROUND_INDEX 0
-# define WALL_INDEX 1
-# define COLLECTIBLE_INDEX 2
-# define EXIT_INDEX 3
-# define PLAYER_INDEX 4
-# define ENEMY_INDEX 5
-# define MOVEMENT_LOG_BG_INDEX 6
 
 // * CELLS
 # define EMPTY_CELL '0'
@@ -61,6 +40,9 @@
 # define MOVEMENT_LOG_Y 32
 # define MOVEMENT_LOG_BG_LENGTH 6
 
+// * ANIMATION DELAYS
+# define PLAYER_DELAY 60
+
 // * STRUCTS
 typedef struct s_map
 {
@@ -78,11 +60,19 @@ typedef struct s_mlx_data
 {
 	void	*conn;
 	void	*window;
-	void	*images[7];
 	int		player_movement_count;
+	void	*player_sprites[20];
+	void	*enemy_sprites[32];
+	void	*static_sprites[5];
 	t_map	map;
 	t_map	flooded_map;
 }			t_mlx_data;
+
+typedef struct s_animation
+{
+	int		delay;
+	int		current_frame;
+}			t_animation;
 
 // * STATICS
 t_mlx_data	*get_data(void);
@@ -105,6 +95,12 @@ void		render_last_player_position(t_mlx_data *data);
 
 // * PLAYER ACTIONS
 void		handle_movement(t_mlx_data *data, int x, int y);
+
+// * LOAD SPRITES
+void	load_static_sprites(t_mlx_data *data);
+void	load_player_sprites(t_mlx_data *data);
+void	load_red_and_blue_enemy_sprites(t_mlx_data *data);
+void	load_pink_and_yellow_enemy_sprites(t_mlx_data *data)
 
 // * ANIMATIONS
 void		run_player_animation(t_mlx_data *data);
