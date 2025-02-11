@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 10:28:47 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:26:51 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	on_keypress(int keysym, t_mlx_data *data)
 
 int	on_loop(t_mlx_data *data)
 {
-	// run_player_animation(data);
+	(void)(data);
 	return (EXIT_SUCCESS);
 }
 
@@ -40,13 +40,13 @@ int	on_destroy(int keysym, t_mlx_data *data)
 	(void)keysym;
 	clean_grid(data->map.grid);
 	clean_grid(data->flooded_map.grid);
-	mlx_destroy_image(data->conn, data->sprites[BACKGROUND_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[WALL_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[COLLECTIBLE_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[EXIT_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[PLAYER_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[ENEMY_INDEX]);
-	mlx_destroy_image(data->conn, data->sprites[MOVEMENT_LOG_BG_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[BACKGROUND_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[WALL_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[COLLECTIBLE_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[EXIT_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[PLAYER_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[ENEMY_INDEX]);
+	// mlx_destroy_image(data->conn, data->static_sprites[MOVEMENT_LOG_BG_INDEX]);
 	mlx_destroy_window(data->conn, data->window);
 	mlx_destroy_display(data->conn);
 	free(data->conn);

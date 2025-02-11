@@ -6,13 +6,13 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 12:23:55 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:30:16 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static void	load_xpm_images(t_mlx_data *data);
+static void	load_all_assets(t_mlx_data *data);
 void		render_image(t_mlx_data *data, char cell, int x, int y);
 
 void	render_map(t_mlx_data *data)
@@ -21,7 +21,7 @@ void	render_map(t_mlx_data *data)
 	int		x;
 	int		y;
 
-	load_xpm_images(data);
+	load_all_assets(data);
 	grid = data->map.grid;
 	y = 0;
 	while (grid[y])
@@ -36,12 +36,11 @@ void	render_map(t_mlx_data *data)
 	}
 }
 
-static void	load_xpm_images(t_mlx_data *data)
+static void	load_all_assets(t_mlx_data *data)
 {
-	load_static_sprites(data);
 	load_player_sprites(data);
-	load_red_and_blue_enemy_sprites(data);
-	load_pink_and_yellow_enemy_sprites(data);
+	load_enemies_sprites(data);
+	load_static_sprites(data);
 }
 
 // TODO create a logic to render the current frame here
@@ -60,9 +59,9 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 	else if (cell == EXIT_CELL && !is_player_on_exit)
 		image = data->static_sprites[EXIT_INDEX];
 	else if (cell == PLAYER_CELL || is_player_on_exit)
-		image = data->player_sprites[PLAYER_R_01_INDEX];
+		image = data->player_animations[0].sprites[0]; // TODO FIX THIS
 	else if (cell == ENEMY_CELL)
-		image = data->enemy_sprites[ENEMY_RED_D_01_INDEX];
+		image = data->enemies_animations[0][0].sprites[0]; // TODO FIX THIS
 	else
 		return ;
 	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y
@@ -73,7 +72,7 @@ void	render_last_player_position(t_mlx_data *data)
 {
 	if (data->map.grid[data->map.player_y][data->map.player_x] == EXIT_CELL)
 		mlx_put_image_to_window(data->conn, data->window,
-			data->sprites[EXIT_INDEX], data->map.player_x * IMG_WIDTH,
+			data->static_sprites[EXIT_INDEX], data->map.player_x * IMG_WIDTH,
 			data->map.player_y * IMG_HEIGHT);
 	else
 	{
@@ -85,7 +84,7 @@ void	render_last_player_position(t_mlx_data *data)
 void	render_movement_counter(t_mlx_data *data, char *str)
 {
 	mlx_put_image_to_window(data->conn, data->window,
-		data->sprites[MOVEMENT_LOG_BG_INDEX], MOVEMENT_LOG_X / 2, MOVEMENT_LOG_Y
+		data->static_sprites[MOVEMENT_LOG_BG_INDEX], MOVEMENT_LOG_X / 2, MOVEMENT_LOG_Y
 		/ 2);
 	mlx_string_put(data->conn, data->window, MOVEMENT_LOG_X, MOVEMENT_LOG_Y
 		* 1.125, MOVEMENT_LOG_COLOR, str);

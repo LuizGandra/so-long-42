@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 11:29:14 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:13:23 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # define IMG_HEIGHT 64
 
 // * ASSETS PATHS
-# define BACKGROUND_IMG "./assets/background.xpm"
-# define WALL_IMG "./assets/wall.xpm"
-# define COLLECTIBLE_IMG "./assets/collectible.xpm"
-# define EXIT_IMG "./assets/exit.xpm"
-# define PLAYER_IMG "./assets/player_r_01.xpm"
+# define BACKGROUND_IMG "./assets/map/background.xpm"
+# define WALL_IMG "./assets/map/wall.xpm"
+# define COLLECTIBLE_IMG "./assets/map/collectible.xpm"
+# define EXIT_IMG "./assets/map/exit.xpm"
+# define PLAYER_IMG "./assets/player/player_r_01.xpm"
 
 // * ASSET INDEXES
 # define BACKGROUND_INDEX 0
