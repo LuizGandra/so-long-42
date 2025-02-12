@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general_utils_bonus.c                              :+:      :+:    :+:   */
+/*   map_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 15:09:17 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/12 11:59:46 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/02/12 11:58:24 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/02/12 11:59:02 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	print_movement_count(t_mlx_data *data)
+int	is_a_wall(char *line)
 {
-	char	*str;
-	char	*count_str;
+	while (*line)
+	{
+		if (*line++ != WALL_CELL)
+			return (0);
+	}
+	return (1);
+}
 
-	count_str = ft_itoa(data->player_movement_count);
-	if (!count_str)
-	{
-		free(count_str);
-		on_destroy(0, data);
-	}
-	str = ft_strjoin(MOVEMENT_LOG_STR, count_str);
-	if (!str)
-	{
-		free(str);
-		free(count_str);
-		on_destroy(0, data);
-	}
-	render_movement_counter(data, str);
-	free(count_str);
-	free(str);
+int	is_cell_valid(char cell)
+{
+	if (!ft_strchr(VALID_CELLS, cell))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:25:28 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 17:22:03 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:46:00 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,19 @@
 # define ENEMY_BLUE_INDEX 1
 # define ENEMY_PINK_INDEX 2
 # define ENEMY_YELLOW_INDEX 3
+
+// * ANIMATION
+# define MAX_PLAYER_ANIMATION_FRAMES 4
+# define PLAYER_ANIMATIONS_COUNT 5
+# define PLAYER_ANIMATIONS_IDENTIFIERS "r,l,u,d,x"
+
+# define MAX_ENEMY_ANIMATION_FRAMES 2
+# define ENEMIES_COUNT 4
+# define ENEMIES_ANIMATIONS_COUNT 4
+# define ENEMIES_ANIMATIONS_IDENTIFIERS "r,l,u,d"
+
+# define STATIC_SPRITES_COUNT 5
+
+# define DEFAULT_SPRITE_INDEX 0
 
 #endif

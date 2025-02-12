@@ -6,40 +6,27 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:37:53 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 17:27:09 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:38:02 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	run_player_animation(t_mlx_data *data)
+void	run_player_animation(t_mlx_data *data, char animation)
 {
-	(void)data;
-	// static t_animation player_animation;
+	int	animation_i;
+	int	i;
 
-	// if (player_animation.delay == PLAYER_DELAY)
-	// {
-	// 	player_animation.delay = 0;
-	// 	if (player_animation.current_frame == 0)
-	// 		mlx_put_image_to_window(data->conn, data->window,
-	// 			data->static_sprites[PLAYER_INDEX], data->map.player_x * IMG_WIDTH,
-	// 			data->map.player_y * IMG_HEIGHT);
-	// 	else if (player_animation.current_frame == 1)
-	// 		mlx_put_image_to_window(data->conn, data->window,
-	// 			data->static_sprites[ENEMY_INDEX], data->map.player_x * IMG_WIDTH,
-	// 			data->map.player_y * IMG_HEIGHT);
-	// 	else if (player_animation.current_frame == 2)
-	// 		mlx_put_image_to_window(data->conn, data->window,
-	// 			data->static_sprites[WALL_INDEX], data->map.player_x * IMG_WIDTH,
-	// 			data->map.player_y * IMG_HEIGHT);
-	// 	else if (player_animation.current_frame == 3)
-	// 		mlx_put_image_to_window(data->conn, data->window,
-	// 			data->static_sprites[EXIT_INDEX], data->map.player_x * IMG_WIDTH,
-	// 			data->map.player_y * IMG_HEIGHT);
-	// 	player_animation.current_frame++;
-	// 	if (player_animation.current_frame == 4)
-	// 		player_animation.current_frame = 0;
-	// }
-	// else
-	// 	player_animation.delay++;
+	animation_i = get_animation_index(PLAYER_ANIMATIONS_IDENTIFIERS, animation);
+	i = 0;
+	while (i < data->player_animations[animation_i].frames_count)
+	{
+		render_animation_frame(data,
+			data->player_animations[animation_i].sprites[i++],
+			data->map.player_x, data->map.player_y);
+	}
+	if (PLAYER_ANIMATIONS_IDENTIFIERS[animation_i] != 'x')
+		render_animation_frame(data,
+			data->player_animations[animation_i].sprites[0], data->map.player_x,
+			data->map.player_y);
 }
