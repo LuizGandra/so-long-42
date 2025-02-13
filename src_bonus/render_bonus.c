@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 14:32:55 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:18:57 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 	else if (cell == EXIT_CELL && !is_player_on_exit)
 		image = data->static_sprites[EXIT_INDEX];
 	else if (cell == PLAYER_CELL || is_player_on_exit)
-		image = data->player_animations[DEFAULT_SPRITE_INDEX].sprites[DEFAULT_SPRITE_INDEX];
+		image = data->player_animations[DEFAULT_SPRITE_INDEX]
+			.sprites[DEFAULT_SPRITE_INDEX];
 	else if (cell == ENEMY_CELL)
-		image = data->enemies_animations[DEFAULT_SPRITE_INDEX][DEFAULT_SPRITE_INDEX].sprites[DEFAULT_SPRITE_INDEX];
+		image = data->enemies_animations[DEFAULT_SPRITE_INDEX]
+			[DEFAULT_SPRITE_INDEX].sprites[DEFAULT_SPRITE_INDEX];
 	else
 		return ;
 	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y
@@ -61,8 +63,8 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 
 void	render_animation_frame(t_mlx_data *data, void *animation, int x, int y)
 {
-	mlx_put_image_to_window(data->conn, data->window, animation, x * IMG_WIDTH, y
-		* IMG_HEIGHT);
+	mlx_put_image_to_window(data->conn, data->window, animation, x * IMG_WIDTH,
+		y * IMG_HEIGHT);
 }
 
 void	render_last_player_position(t_mlx_data *data)

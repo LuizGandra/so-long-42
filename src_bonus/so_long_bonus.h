@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 15:44:35 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:23:06 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define MOVEMENT_LOG_X 32
 # define MOVEMENT_LOG_Y 32
 # define MOVEMENT_LOG_BG_LENGTH 6
+
+// * ERROR MESSAGES
+# define LOADING_ERROR_MSG "An error occurred while loading the sprites.\n"
 
 // * STRUCTS
 typedef struct s_map
@@ -111,11 +114,15 @@ void			load_player_sprites(t_mlx_data *data);
 void			load_enemies_sprites(t_mlx_data *data);
 void			load_static_sprites(t_mlx_data *data);
 
-// * LOAD SPRITES UTILS
+// * utils
 char			*get_sprite_path(char cell, char *animation, int animation_i,
 					int frame);
 void			*load_xpm_image(t_mlx_data *data, char *path);
 char			*get_enemy_folder(int i);
+void			load_player_sprite(t_mlx_data *data, char **animations, int i,
+					int *j);
+void			load_enemy_sprite(t_mlx_data *data, char **animations, int i,
+					int j, int *k);
 
 // * ANIMATIONS
 void			run_player_animation(t_mlx_data *data);
@@ -129,8 +136,16 @@ void			print_movement_count(t_mlx_data *data);
 
 // * ERRORS
 void			throw_error(char *msg);
+void			load_player_sprites_error(t_mlx_data *data, char **animations,
+					char *msg);
+void			load_enemies_sprites_error(t_mlx_data *data, char **animations,
+					char *msg);
+
+// * CLEAN
 void			clean_exit(t_mlx_data *data, char *msg);
 void			clean_exit_fd(int fd, char *msg);
 void			clean_grid(char **mem);
+void			clean_player_sprites(t_mlx_data *data, char *msg);
+void			clean_enemies_sprites(t_mlx_data *data, char *msg);
 
 #endif

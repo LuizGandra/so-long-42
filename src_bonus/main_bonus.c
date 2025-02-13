@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:13:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 15:13:33 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:38:43 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	data = get_data();
 	if (argc != 2)
 		throw_error("Invalid number of arguments.\n"
-					"Usage: ./so_long <map_path>.ber\n");
+			"Usage: ./so_long <map_path>.ber\n");
 	if (ft_strcmp(ft_strrchr(argv[1], '.'), ".ber"))
 		throw_error("The map file extension must be \".ber\".\n");
 	read_map(data, argv[1]);

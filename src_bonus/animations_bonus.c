@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:37:53 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 16:13:58 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:32:40 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	run_player_animation(t_mlx_data *data)
 	static int	is_finished;
 	int			animation_i;
 
-	animation_i = get_animation_index(PLAYER_ANIMATIONS_IDENTIFIERS,
+	animation_i = get_animation_index(PLAYER_ANIMATIONS_IDS,
 			data->current_player_animation);
 	animation_data = &data->player_animations[animation_i];
 	if (animation_data->frame_timer == ANIMATION_DELAY)
@@ -27,7 +27,6 @@ void	run_player_animation(t_mlx_data *data)
 		render_animation_frame(data,
 			animation_data->sprites[animation_data->current_frame],
 			data->map.player_x, data->map.player_y);
-		ft_printf("Frame: %i\n", animation_data->current_frame);
 		if (is_finished)
 		{
 			data->current_player_animation = '\0';

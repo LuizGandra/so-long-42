@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:25:28 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 16:19:20 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:12:28 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@
 
 # define MAX_PLAYER_ANIMATION_FRAMES 4
 # define PLAYER_ANIMATIONS_COUNT 5
-# define PLAYER_ANIMATIONS_IDENTIFIERS "r,l,u,d,x"
+# define PLAYER_ANIMATIONS_IDS "r,l,u,d,x"
 
-# define MAX_ENEMY_ANIMATION_FRAMES 2
+# define MAX_ENEMIES_ANIMATION_FRAMES 2
 # define ENEMIES_COUNT 4
 # define ENEMIES_ANIMATIONS_COUNT 4
-# define ENEMIES_ANIMATIONS_IDENTIFIERS "r,l,u,d"
+# define ENEMIES_ANIMATIONS_IDS "r,l,u,d"
+
+# define RIGHT_ID 'r'
+# define LEFT_ID 'l'
+# define UP_ID 'u'
+# define DOWN_ID 'd'
 
 # define STATIC_SPRITES_COUNT 5
 
