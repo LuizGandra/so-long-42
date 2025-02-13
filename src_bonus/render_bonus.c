@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 11:46:43 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:32:55 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 		* IMG_HEIGHT);
 }
 
-void	render_animation_frame(t_mlx_data *data, void *frame, int x, int y)
+void	render_animation_frame(t_mlx_data *data, void *animation, int x, int y)
 {
-	mlx_put_image_to_window(data->conn, data->window, frame, x * IMG_WIDTH, y
+	mlx_put_image_to_window(data->conn, data->window, animation, x * IMG_WIDTH, y
 		* IMG_HEIGHT);
 }
 

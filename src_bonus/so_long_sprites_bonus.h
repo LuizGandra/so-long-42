@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:25:28 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 12:10:43 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:19:20 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define ENEMY_YELLOW_INDEX 3
 
 // * ANIMATION
-# define ANIMATION_DELAY 100
+# define ANIMATION_DELAY 2000
 
 # define MAX_FRAMES 4
 

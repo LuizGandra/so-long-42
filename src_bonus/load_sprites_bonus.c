@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:30:39 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/12 18:43:17 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:19:53 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	load_player_sprites(t_mlx_data *data)
 			path = get_sprite_path(PLAYER_CELL, animations[i], i, j);
 			data->player_animations[i].sprites[j] = load_xpm_image(data, path);
 			data->player_animations[i].frames_count++;
+			data->player_animations[i].current_frame = 0;
+			data->player_animations[i].frame_timer = ANIMATION_DELAY;
 			free(path);
 			j++;
 		}
@@ -57,7 +59,6 @@ void	load_enemies_sprites(t_mlx_data *data)
 		while (j < ENEMIES_ANIMATIONS_COUNT)
 		{
 			k = 0;
-
 			while (k < MAX_ENEMY_ANIMATION_FRAMES)
 			{
 				path = get_sprite_path(ENEMY_CELL, animations[i], j, k);

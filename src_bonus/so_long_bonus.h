@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 12:10:39 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:44:35 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_animation
 {
 	void		*sprites[MAX_FRAMES];
 	int			frames_count;
+	int			current_frame;
+	int			frame_timer;
 }				t_animation;
 
 typedef struct s_mlx_data
@@ -66,7 +68,7 @@ typedef struct s_mlx_data
 	int			player_movement_count;
 	t_animation	player_animations[PLAYER_ANIMATIONS_COUNT];
 	t_animation	enemies_animations[ENEMIES_COUNT][ENEMIES_ANIMATIONS_COUNT];
-	int			frame_timer;
+	char		current_player_animation;
 	void		*static_sprites[STATIC_SPRITES_COUNT];
 	t_map		map;
 	t_map		flooded_map;
@@ -116,7 +118,7 @@ void			*load_xpm_image(t_mlx_data *data, char *path);
 char			*get_enemy_folder(int i);
 
 // * ANIMATIONS
-void			run_player_animation(t_mlx_data *data, char animation);
+void			run_player_animation(t_mlx_data *data);
 
 // * GAME OVER
 void			check_exit(t_mlx_data *data);
