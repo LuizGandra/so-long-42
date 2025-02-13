@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/12 18:36:57 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:24:38 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	on_keypress(int keysym, t_mlx_data *data)
 
 int	on_loop(t_mlx_data *data)
 {
-	(void)(data);
+	if (data->frame_timer < ANIMATION_DELAY)
+		data->frame_timer++;
 	return (EXIT_SUCCESS);
 }
 

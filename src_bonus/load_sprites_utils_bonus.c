@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:09:47 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/12 18:03:01 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:14:00 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char	*get_sprite_path(char cell, char *animation, int animation_i,
 		frame_str = ft_strjoin("0", ft_itoa(frame + 1));
 	else
 		frame_str = ft_itoa(frame + 1);
-	// if (!frame_str)
-	// TODO handle error
+	if (!frame_str)
+		return (NULL); // TODO handle error
 	path = ft_strjoin_free(path, frame_str);
 	path = ft_strjoin_free(path, ".xpm");
-	// if (!path)
-		// TODO handle error
+	if (!path)
+		return (NULL); // TODO handle error
 	return (path);
 }
 

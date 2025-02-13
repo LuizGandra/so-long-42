@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/12 18:41:10 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:10:39 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef struct s_mlx_data
 {
 	void		*conn;
 	void		*window;
-	int			timer;
 	int			player_movement_count;
 	t_animation	player_animations[PLAYER_ANIMATIONS_COUNT];
 	t_animation	enemies_animations[ENEMIES_COUNT][ENEMIES_ANIMATIONS_COUNT];
+	int			frame_timer;
 	void		*static_sprites[STATIC_SPRITES_COUNT];
 	t_map		map;
 	t_map		flooded_map;
