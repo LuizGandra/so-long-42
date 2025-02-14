@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:30:39 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 19:23:36 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:20:44 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	load_player_sprites(t_mlx_data *data)
 	{
 		j = 0;
 		while (j < MAX_PLAYER_ANIMATION_FRAMES)
-			load_player_sprite(data, animations, i, &j);
+			load_player_sprite(animations, i, &j);
 		i++;
 	}
 	clean_grid(animations);
@@ -50,7 +50,7 @@ void	load_enemies_sprites(t_mlx_data *data)
 		{
 			k = 0;
 			while (k < MAX_ENEMIES_ANIMATION_FRAMES)
-				load_enemy_sprite(data, animations, i, j, &k);
+				load_enemy_sprite(animations, i, j, &k);
 			j++;
 		}
 		i++;
@@ -68,4 +68,23 @@ void	load_static_sprites(t_mlx_data *data)
 	data->static_sprites[EXIT_INDEX] = load_xpm_image(data, EXIT_IMG);
 	data->static_sprites[MOVEMENT_LOG_BG_INDEX] = load_xpm_image(data,
 			MOVEMENT_LOG_BG_IMG);
+}
+
+char	*get_sprite_path(char cell, char *animation, int animation_i, int frame)
+{
+	char	*path;
+
+	if (cell == PLAYER_CELL)
+		path = ft_strjoin(BASE_PATH, "player/player_");
+	else if (cell == ENEMY_CELL)
+	{
+		path = ft_strjoin(BASE_PATH, "enemies/");
+		path = ft_strjoin_free(path, get_enemy_folder(animation_i));
+		path = ft_strjoin_free(path, "enemy_");
+	}
+	get_animation_frame_path(&path, animation, frame);
+	path = ft_strjoin_free(path, ".xpm");
+	if (!path)
+		return (free(path), NULL);
+	return (path);
 }

@@ -1,6 +1,0 @@
-{
-	"files.associations": {
-		".env*": "dotenv",
-		"so_long_bonus.h": "c"
-	}
-}

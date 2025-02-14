@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:12:48 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,22 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 	int		i;
 	char	**grid;
 
-	i = 0;
+	i = -1;
 	grid = map->grid;
-	if (map->width * IMG_WIDTH > 1920 || map->height * IMG_HEIGHT > 1080)
+	if (map->width * IMG_WIDTH > 1920 || map->height * IMG_HEIGHT > 1080) // TODO create macros for this
 		clean_exit(data, "The map size must be less than or equal to 30x17.\n");
-	if (!is_a_wall(grid[i]) || !is_a_wall(grid[map->height - 1]))
+	if (!is_a_wall(grid[i + 1]) || !is_a_wall(grid[map->height - 1]))
 		clean_exit(data, "The map must be closed by walls.\n");
-	while (i < map->height)
-	{
+	while (++i < map->height)
 		validate_line(data, map, grid[i], i);
-		i++;
-	}
 	if (!map->exit_count || map->exit_count > 1)
 		clean_exit(data, "The map must contain one exit.\n");
 	if (!map->player_count || map->player_count > 1)
 		clean_exit(data, "The map must contain one start position.\n");
 	if (!map->collectible_count)
 		clean_exit(data, "The map must contain at least one collectible.\n");
+	if (map->enemies_count > 4)
+		clean_exit(data, "The map must contain at most four enemies.\n"); // TODO resolve segmentation fault for this case
 	has_valid_path(flooded_map, map->player_x, map->player_y);
 	if (flooded_map->exit_count != 1
 		|| flooded_map->collectible_count != map->collectible_count)
@@ -89,12 +88,10 @@ static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height)
 			map->collectible_count++;
 		else if (line[i] == EXIT_CELL)
 			map->exit_count++;
+		else if (line[i] == ENEMY_CELL)
+			update_enemy_data(map, i, height);
 		else if (line[i] == PLAYER_CELL)
-		{
-			map->player_count++;
-			map->player_x = i;
-			map->player_y = height;
-		}
+			update_player_data(map, i, height);
 		i++;
 	}
 }

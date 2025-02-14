@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 19:23:16 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:53:51 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	on_loop(t_mlx_data *data)
 {
 	if (data->current_player_animation)
 		run_player_animation(data);
+	move_enemies(data);
 	return (EXIT_SUCCESS);
 }
 
@@ -49,6 +50,11 @@ int	on_destroy(int keysym, t_mlx_data *data)
 	clean_grid(data->flooded_map.grid);
 	clean_player_sprites(data, NULL);
 	clean_enemies_sprites(data, NULL);
+	mlx_destroy_image(data->conn, data->static_sprites[BACKGROUND_INDEX]);
+	mlx_destroy_image(data->conn, data->static_sprites[WALL_INDEX]);
+	mlx_destroy_image(data->conn, data->static_sprites[COLLECTIBLE_INDEX]);
+	mlx_destroy_image(data->conn, data->static_sprites[EXIT_INDEX]);
+	mlx_destroy_image(data->conn, data->static_sprites[MOVEMENT_LOG_BG_INDEX]);
 	mlx_destroy_window(data->conn, data->window);
 	mlx_destroy_display(data->conn);
 	free(data->conn);

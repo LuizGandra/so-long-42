@@ -20,8 +20,8 @@ SRCS_BONUS := \
 	map_bonus.c map_utils_bonus.c \
 	render_bonus.c render_utils_bonus.c \
 	controller_bonus.c statics_bonus.c \
-	load_sprites_bonus.c load_sprites_utils_bonus.c \
-	animations_bonus.c game_over_bonus.c \
+	load_sprites_bonus.c load_sprites_utils_bonus.c enemies_bonus.c \
+	animations_bonus.c animations_utils_bonus.c game_over_bonus.c \
 	general_utils_bonus.c clean_bonus.c errors_bonus.c
 SRCS_BONUS := $(addprefix $(BONUS_DIR)/, $(SRCS_BONUS))
 OBJ_DIR := objects

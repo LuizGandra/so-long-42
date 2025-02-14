@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:11:11 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/13 19:18:57 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:21:44 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	render_map(t_mlx_data *data)
 
 void	render_image(t_mlx_data *data, char cell, int x, int y)
 {
-	int		is_player_on_exit;
 	void	*image;
+	int		is_player_on_exit;
 
 	is_player_on_exit = check_player_on_exit(data, x, y);
 	if (cell == EMPTY_CELL)
@@ -53,8 +53,8 @@ void	render_image(t_mlx_data *data, char cell, int x, int y)
 		image = data->player_animations[DEFAULT_SPRITE_INDEX]
 			.sprites[DEFAULT_SPRITE_INDEX];
 	else if (cell == ENEMY_CELL)
-		image = data->enemies_animations[DEFAULT_SPRITE_INDEX]
-			[DEFAULT_SPRITE_INDEX].sprites[DEFAULT_SPRITE_INDEX];
+		image = data->enemies_animations[data->map.enemies_count - 1]
+		[DEFAULT_SPRITE_INDEX].sprites[DEFAULT_SPRITE_INDEX];
 	else
 		return ;
 	mlx_put_image_to_window(data->conn, data->window, image, x * IMG_WIDTH, y
