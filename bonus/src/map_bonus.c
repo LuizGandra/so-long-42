@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/18 14:08:06 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:44:55 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height)
 		if (!is_cell_valid(line[i]))
 			clean_exit(data,
 				"The map can only contain the characters "
-				"0, 1, C, E and P.\n");
+				"0, 1, C, E, X and P.\n");
 		if (line[i] == COLLECTIBLE_CELL)
 			map->collectible_count++;
 		else if (line[i] == EXIT_CELL)

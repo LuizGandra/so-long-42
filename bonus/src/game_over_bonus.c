@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:18:45 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/18 15:46:23 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:49:29 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_exit(t_mlx_data *data)
 {
 	if (!data->map.collectible_count)
 	{
-		ft_printf("\033[1;32m" "\n\nCONGRATULATIONS!\n" "\033[0m");
+		ft_printf("\033[1;32m" "\nCONGRATULATIONS!\n" "\033[0m");
 		ft_printf("\033[32m" "You won with %i movements.\n\n" "\033[0m",
 			data->player_movement_count);
 		on_destroy(0, data);
@@ -31,7 +31,7 @@ void	kill_player(t_mlx_data *data)
 
 void	game_over(t_mlx_data *data)
 {
-	ft_printf("\033[1;31m" "\n\nGAME OVER!\n" "\033[0m");
+	ft_printf("\033[1;31m" "\nGAME OVER!\n" "\033[0m");
 	ft_printf("\033[31m"
 		"You lost with %i moves with %i collectibles remaining.\n\n"
 		"\033[0m", data->player_movement_count, data->map.collectible_count);
