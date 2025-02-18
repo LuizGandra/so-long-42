@@ -11,7 +11,6 @@ LIBFT := $(LIBS_DIR)/libft
 LIBS := \
 	-L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11
 INCLUDES := -I/usr/include -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
-# TODO compilar a mlx chamando o make dela
 
 HEADERS := $(INCLUDES_DIR)/so_long.h
 
@@ -54,26 +53,29 @@ VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 GDB = gdb
 GDB_FLAGS = -tui -args
 
-all: $(LIBFT) $(OBJ_DIR) $(NAME)
+all: $(MLX) $(LIBFT) $(OBJ_DIR) $(NAME)
 
-# TODO remove -O0 -g3
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -O0 -g3 -o $@
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
-# TODO remove -O0 -g3
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -O0 -g3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-bonus: $(LIBFT) $(OBJ_DIR_BONUS) $(NAME_BONUS)
+bonus: $(MLX) $(LIBFT) $(OBJ_DIR_BONUS) $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJECTS_BONUS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -O0 -g3 -o $@
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 $(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c $(HEADERS_BONUS)
-	$(CC) $(CFLAGS) $(INCLUDES_BONUS) -O0 -g3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES_BONUS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C $@
+
+$(MLX):
+ifeq ($(wildcard $(LIBS_DIR)/$(MLX)/libmlx_Linux.a), )
+	$(MAKE) -C $(LIBS_DIR)/$(MLX)
+endif
 
 $(OBJ_DIR):
 	mkdir -p $@
@@ -83,6 +85,7 @@ $(OBJ_DIR_BONUS):
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
+	$(MAKE) -C $(LIBS_DIR)/$(MLX) clean
 	$(RM) $(OBJ_DIR) $(OBJ_DIR)
 
 fclean: clean
