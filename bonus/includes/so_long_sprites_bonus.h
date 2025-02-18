@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:25:28 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/14 18:18:52 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:31:45 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@
 # define ENEMY_YELLOW_INDEX 3
 
 // * ANIMATION
-# define PLAYER_ANIMATION_DELAY 2000
-# define ENEMY_ANIMATION_DELAY 4000
+# define PLAYER_WALK_ANIMATION_DELAY 2000
+# define PLAYER_DEATH_ANIMATION_DELAY 8000
+# define ENEMY_ANIMATION_DELAY 10000
 
 # define MAX_FRAMES 4
 
@@ -63,6 +64,7 @@
 # define LEFT_ID 'l'
 # define UP_ID 'u'
 # define DOWN_ID 'd'
+# define DEATH_ID 'x'
 
 # define STATIC_SPRITES_COUNT 5
 

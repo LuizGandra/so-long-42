@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/14 16:52:49 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:10:51 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 // * ERROR MESSAGES
 # define LOADING_ERROR_MSG "An error occurred while loading the sprites.\n"
 
+// * MAX SCREEN SIZE
+# define MAX_SCREEN_WIDTH 1920
+# define MAX_SCREEN_HEIGHT 1080
+
 // * STRUCTS
 typedef struct s_enemy_data
 {
@@ -72,6 +76,7 @@ typedef struct s_animation
 	int				frames_count;
 	int				current_frame;
 	int				frame_timer;
+	int				delay;
 }					t_animation;
 
 typedef struct s_mlx_data
@@ -82,6 +87,7 @@ typedef struct s_mlx_data
 	t_animation		player_animations[PLAYER_ANIMATIONS_COUNT];
 	t_animation		enemies_animations[ENEMIES_COUNT][ENEMIES_ANIMATIONS_COUNT];
 	char			current_player_animation;
+	int				game_over;
 	void			*static_sprites[STATIC_SPRITES_COUNT];
 	t_map			map;
 	t_map			flooded_map;
@@ -138,9 +144,6 @@ void				load_player_sprite(char **animations, int i, int *j);
 void				load_enemy_sprite(char **animations, int i, int j, int *k);
 char				*get_enemy_folder(int i);
 
-// * ENEMIES
-void				move_enemies(t_mlx_data *data);
-
 // * ANIMATIONS
 void				run_player_animation(t_mlx_data *data);
 void				run_enemy_animation(t_mlx_data *data, t_enemy_data *enemy,
@@ -154,6 +157,7 @@ void				finish_enemy_animation(t_enemy_data *enemy,
 // * GAME OVER
 void				check_exit(t_mlx_data *data);
 void				kill_player(t_mlx_data *data);
+void				game_over(t_mlx_data *data);
 
 // * GENERAL UTILS
 void				print_movement_count(t_mlx_data *data);

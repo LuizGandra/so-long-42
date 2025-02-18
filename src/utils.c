@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:09:17 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 17:55:45 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:47:35 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	check_exit(t_mlx_data *data)
 {
 	if (!data->map.collectible_count)
 	{
-		ft_printf("\n========== Congratulations! ==========\n");
-		ft_printf("You win with %i movements.", data->player_movement_count);
-		ft_printf("\n======================================\n\n");
+		ft_printf("\033[1;32m" "\n\nCONGRATULATIONS!\n" "\033[0m");
+		ft_printf("\033[32m" "You won with %i movements.\n\n" "\033[0m",
+			data->player_movement_count);
 		on_destroy(0, data);
 	}
 }

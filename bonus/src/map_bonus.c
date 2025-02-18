@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/14 18:12:48 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:08:06 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 
 	i = -1;
 	grid = map->grid;
-	if (map->width * IMG_WIDTH > 1920 || map->height * IMG_HEIGHT > 1080) // TODO create macros for this
+	if (map->width * IMG_WIDTH > MAX_SCREEN_WIDTH || map->height
+		* IMG_HEIGHT > MAX_SCREEN_HEIGHT)
 		clean_exit(data, "The map size must be less than or equal to 30x17.\n");
 	if (!is_a_wall(grid[i + 1]) || !is_a_wall(grid[map->height - 1]))
 		clean_exit(data, "The map must be closed by walls.\n");
@@ -62,7 +63,7 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 	if (!map->collectible_count)
 		clean_exit(data, "The map must contain at least one collectible.\n");
 	if (map->enemies_count > 4)
-		clean_exit(data, "The map must contain at most four enemies.\n"); // TODO resolve segmentation fault for this case
+		clean_exit(data, "The map must contain at most four enemies.\n");
 	has_valid_path(flooded_map, map->player_x, map->player_y);
 	if (flooded_map->exit_count != 1
 		|| flooded_map->collectible_count != map->collectible_count)

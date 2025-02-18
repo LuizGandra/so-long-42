@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:50:21 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/14 16:43:34 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:08:14 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	finish_enemy_animation(t_enemy_data *enemy, int *is_finished)
 		*is_finished = 0;
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:09:47 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/14 18:18:42 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:33:06 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,22 @@ void	load_player_sprite(char **animations, int i, int *j)
 {
 	t_mlx_data	*data;
 	char		*path;
+	int			animation_i;
 
 	data = get_data();
 	path = get_sprite_path(PLAYER_CELL, animations[i], i, *j);
+	animation_i = get_animation_index(PLAYER_ANIMATIONS_IDS,
+			DEATH_ID);
 	if (!path)
 		load_player_sprites_error(data, animations, LOADING_ERROR_MSG);
 	data->player_animations[i].sprites[*j] = load_xpm_image(data, path);
 	data->player_animations[i].frames_count++;
 	data->player_animations[i].current_frame = 0;
-	data->player_animations[i].frame_timer = PLAYER_ANIMATION_DELAY;
+	data->player_animations[i].delay = PLAYER_WALK_ANIMATION_DELAY;
+	if (i == animation_i)
+		data->player_animations[i].delay = PLAYER_DEATH_ANIMATION_DELAY;
+	else
+		data->player_animations[i].frame_timer = PLAYER_WALK_ANIMATION_DELAY;
 	free(path);
 	*j += 1;
 }
@@ -72,6 +79,9 @@ void	load_enemy_sprite(char **animations, int i, int j, int *k)
 		load_enemies_sprites_error(data, animations, LOADING_ERROR_MSG);
 	data->enemies_animations[i][j].sprites[*k] = load_xpm_image(data, path);
 	data->enemies_animations[i][j].frames_count++;
+	data->enemies_animations[i][j].current_frame = 0;
+	data->enemies_animations[i][j].frame_timer = ENEMY_ANIMATION_DELAY;
+	data->enemies_animations[i][j].delay = ENEMY_ANIMATION_DELAY;
 	free(path);
 	*k += 1;
 }
