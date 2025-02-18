@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:58 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/11 15:13:23 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:20:25 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@
 # define EXIT_CELL 'E'
 # define PLAYER_CELL 'P'
 # define WALKED_CELL '-'
+
+// * MAX SCREEN SIZE
+# define MAX_SCREEN_WIDTH 1920
+# define MAX_SCREEN_HEIGHT 1080
 
 // * OTHERS
 # define VALID_CELLS "01CEP"

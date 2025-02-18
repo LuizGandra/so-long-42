@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/10 18:05:15 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:21:07 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 
 	i = 0;
 	grid = map->grid;
-	if (map->width * IMG_WIDTH > 1920 || map->height * IMG_HEIGHT > 1080)
+	if (map->width * IMG_WIDTH > MAX_SCREEN_WIDTH || map->height
+		* IMG_HEIGHT > MAX_SCREEN_HEIGHT)
 		clean_exit(data, "The map size must be less than or equal to 30x17.\n");
 	if (!is_a_wall(grid[i]) || !is_a_wall(grid[map->height - 1]))
 		clean_exit(data, "The map must be closed by walls.\n");
@@ -82,8 +83,9 @@ static void	validate_line(t_mlx_data *data, t_map *map, char *line, int height)
 	while (i < map->width)
 	{
 		if (!is_cell_valid(line[i]))
-			clean_exit(data, "The map can only contain the characters "
-				"0, 1, C, E and P.\n");
+			clean_exit(data,
+						"The map can only contain the characters "
+						"0, 1, C, E and P.\n");
 		if (line[i] == COLLECTIBLE_CELL)
 			map->collectible_count++;
 		else if (line[i] == EXIT_CELL)
