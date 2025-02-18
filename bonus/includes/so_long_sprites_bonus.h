@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:25:28 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/18 15:31:45 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:35:59 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 # define ENEMY_BLUE_INDEX 1
 # define ENEMY_PINK_INDEX 2
 # define ENEMY_YELLOW_INDEX 3
+
+# define ENEMY_RED_ID 'r'
+# define ENEMY_BLUE_ID 'b'
+# define ENEMY_PINK_ID 'p'
+# define ENEMY_YELLOW_ID 'y'
 
 // * ANIMATION
 # define PLAYER_WALK_ANIMATION_DELAY 2000
