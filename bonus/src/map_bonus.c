@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 09:08:26 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/18 17:44:55 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:18:07 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
 	grid = map->grid;
 	if (map->width * IMG_WIDTH > MAX_SCREEN_WIDTH || map->height
 		* IMG_HEIGHT > MAX_SCREEN_HEIGHT)
-		clean_exit(data, "The map size must be less than or equal to 30x17.\n");
+		clean_exit(data, "The map size must be less than or equal to 30x16.\n");
 	if (!is_a_wall(grid[i + 1]) || !is_a_wall(grid[map->height - 1]))
 		clean_exit(data, "The map must be closed by walls.\n");
 	while (++i < map->height)

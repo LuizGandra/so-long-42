@@ -4,14 +4,14 @@ CC := clang
 CFLAGS := -Wall -Werror -Wextra
 RM := rm -rf
 
-INCLUDES_DIR := includes
-LIBS_DIR := libs
+INCLUDES_DIR := include
+LIBS_DIR := lib
 MLX := mlx
 LIBFT := $(LIBS_DIR)/libft
 LIBS := \
 	-L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11
-INCLUDES := -I/usr/include -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) \
-	-I$(LIBFT)/include -I$(LIBFT)/ft_printf/include
+INCLUDES := -I/usr/$(INCLUDES_DIR) -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) \
+	-I$(LIBFT)/$(INCLUDES_DIR) -I$(LIBFT)/ft_printf/$(INCLUDES_DIR)
 
 HEADERS := $(INCLUDES_DIR)/so_long.h
 
@@ -20,15 +20,15 @@ SRCS := \
 	main.c hooks.c map.c render.c controller.c statics.c utils.c errors.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
-OBJ_DIR := objects
+OBJ_DIR := build
 OBJECTS := $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 NAME_BONUS := so_long_bonus
 
 BONUS_DIR := bonus
 
-INCLUDES_BONUS := -I/usr/include -I$(BONUS_DIR)/$(INCLUDES_DIR) \
-	-I$(LIBS_DIR)/$(MLX) -I$(LIBFT)/include -I$(LIBFT)/ft_printf/include
+INCLUDES_BONUS := -I/usr/$(INCLUDES_DIR) -I$(BONUS_DIR)/$(INCLUDES_DIR) \
+	-I$(LIBS_DIR)/$(MLX) -I$(LIBFT)/$(INCLUDES_DIR) -I$(LIBFT)/ft_printf/$(INCLUDES_DIR)
 
 HEADERS_BONUS := $(BONUS_DIR)/$(INCLUDES_DIR)/so_long_bonus.h \
 	$(BONUS_DIR)/$(INCLUDES_DIR)/so_long_sprites_bonus.h
@@ -87,7 +87,7 @@ $(OBJ_DIR_BONUS):
 clean:
 	$(MAKE) -C $(LIBFT) clean
 	$(MAKE) -C $(LIBS_DIR)/$(MLX) clean
-	$(RM) $(OBJ_DIR) $(OBJ_DIR)
+	$(RM) $(OBJ_DIR) $(OBJ_DIR_BONUS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT) fclean

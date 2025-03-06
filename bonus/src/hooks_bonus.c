@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:12:55 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/18 15:31:27 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:17:09 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	on_loop(t_mlx_data *data)
 		game_over(data);
 	while (i < data->map.enemies_count)
 	{
-		if (!(data->map.enemies_data[i].x === data->map.player_x
-			&& data->map.enemies_data[i].y === data->map.player_y))
+		if (!(data->map.enemies_data[i].x == data->map.player_x
+			&& data->map.enemies_data[i].y == data->map.player_y))
 			run_enemy_animation(data, &data->map.enemies_data[i], i);
 		i++;
 	}
