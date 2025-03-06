@@ -2,6 +2,9 @@
 
 So Long is a project from the [42 São Paulo](https://www.42sp.org.br/) Common Core curriculum. It involves creating a 2D game using the MiniLibX library, where a player navigates a map to collect items and reach an exit.
 
+![bonus](https://github.com/user-attachments/assets/24f64657-8ff2-4253-8d9f-325133220f92)
+*./so_long_bonus running!*
+
 My implementation draws inspiration from the classic **Pac-Man arcade game**. Sprites were sourced from [The Spriters Resource](https://www.spriters-resource.com/arcade/pacman/) and adapted using Aseprite, a paid pixel art software, to adapt animations and fit the game design.
 
 ![42 São Paulo](https://img.shields.io/badge/42-São_Paulo-black?style=flat-square&logo=42)
@@ -11,6 +14,9 @@ My implementation draws inspiration from the classic **Pac-Man arcade game**. Sp
 [42 São Paulo](https://www.42sp.org.br/) is a tuition-free, global coding school focused on peer-to-peer learning and project-based education. This project introduces graphics programming and game development in C.
 
 ## Project Overview
+
+![mandatory](https://github.com/user-attachments/assets/08f2da56-1c81-43d4-9e88-00763ed155c8)
+*./so_long running!*
 
 So Long implements a simple 2D game. The player moves through a map, collecting all items before exiting. It’s divided into:
 - **Mandatory Part**: A basic game with player movement, movement counting, item collection, and exit functionality, using a rectangular map with walls, a player, collectibles, and an exit.
