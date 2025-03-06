@@ -14,11 +14,11 @@ My implementation draws inspiration from the classic **Pac-Man arcade game**. Sp
 
 ## Project Overview
 
-![mandatory](https://github.com/user-attachments/assets/08f2da56-1c81-43d4-9e88-00763ed155c8)
-
 So Long implements a simple 2D game. The player moves through a map, collecting all items before exiting. It’s divided into:
 - **Mandatory Part**: A basic game with player movement, movement counting, item collection, and exit functionality, using a rectangular map with walls, a player, collectibles, and an exit.
 - **Bonus Part**: An enhanced version with additional features such as enemies, animations and movement count directly on the game screen.
+
+![mandatory](https://github.com/user-attachments/assets/08f2da56-1c81-43d4-9e88-00763ed155c8)
 
 ### Key Features
 
