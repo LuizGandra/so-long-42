@@ -47,11 +47,11 @@ SRCS_BONUS := $(addprefix $(SRC_DIR_BONUS)/, $(SRCS_BONUS))
 OBJ_DIR_BONUS := $(BONUS_DIR)/$(OBJ_DIR)
 OBJECTS_BONUS := $(addprefix $(OBJ_DIR_BONUS)/, $(notdir $(SRCS_BONUS:.c=.o)))
 
-VALGRIND = valgrind
-VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
+VALGRIND := valgrind
+VALGRIND_FLAGS := --leak-check=full --show-leak-kinds=all --track-origins=yes
 
-GDB = gdb
-GDB_FLAGS = -tui -args
+GDB := gdb
+GDB_FLAGS := -tui -args
 
 all: $(MLX) $(LIBFT) $(OBJ_DIR) $(NAME)
 
