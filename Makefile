@@ -10,7 +10,8 @@ MLX := mlx
 LIBFT := $(LIBS_DIR)/libft
 LIBS := \
 	-L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11
-INCLUDES := -I/usr/include -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
+INCLUDES := -I/usr/include -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) \
+	-I$(LIBFT)/include -I$(LIBFT)/ft_printf/include
 
 HEADERS := $(INCLUDES_DIR)/so_long.h
 
@@ -27,7 +28,7 @@ NAME_BONUS := so_long_bonus
 BONUS_DIR := bonus
 
 INCLUDES_BONUS := -I/usr/include -I$(BONUS_DIR)/$(INCLUDES_DIR) \
-	-I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
+	-I$(LIBS_DIR)/$(MLX) -I$(LIBFT)/include -I$(LIBFT)/ft_printf/include
 
 HEADERS_BONUS := $(BONUS_DIR)/$(INCLUDES_DIR)/so_long_bonus.h \
 	$(BONUS_DIR)/$(INCLUDES_DIR)/so_long_sprites_bonus.h
