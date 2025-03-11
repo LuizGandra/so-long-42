@@ -80,7 +80,7 @@ So Long implements a simple 2D game. The player moves through a map, collecting 
 #### Additional commands
 
 - `make clean`: remove object files.
-- `make fclean`: remove `libft.a` and object files.
+- `make fclean`: remove the program and object files.
 - `make re`: rebuild everything.
 
 ## Project Structure
